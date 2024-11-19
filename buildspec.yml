@@ -1,0 +1,16 @@
+version: 0.2
+
+env:
+  variables:
+    CFN_STACK: "iata_stack"
+
+phases:
+  
+  build:
+    commands:
+      - pip install --upgrade --force-reinstall . "awscli"
+      - export PYTHONUNBUFFERED=TRUE
+      - aws cloudformation deploy --stack-name ${CFN_STACK} --template-file cloudformation/iata_stack.yml
+      - chmod +x ./run_pipeline.sh
+      - ./run_pipeline.sh
+      - echo "Create/Update of the SageMaker Pipeline and execution completed."
