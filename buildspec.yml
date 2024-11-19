@@ -9,6 +9,7 @@ phases:
   build:
     commands:
       - pip install --upgrade --force-reinstall awscli
+      - pip install -r ./code/requirements.txt
       - export PYTHONUNBUFFERED=TRUE
       - aws cloudformation deploy --stack-name ${CFN_STACK} --template-file cloudformation/iata_stack.yml
       - chmod +x ./run_pipeline.sh
