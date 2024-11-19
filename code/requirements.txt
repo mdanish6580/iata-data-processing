@@ -1,6 +1,5 @@
 sagemaker
 boto3
 pandas
-pyarrow
 pyspark
 requests
