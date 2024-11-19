@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    CFN_STACK: "iata_stack"
+    CFN_STACK: "iata-stack"
 
 phases:
   
