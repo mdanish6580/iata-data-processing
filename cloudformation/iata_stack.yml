@@ -24,7 +24,7 @@ Resources:
         Name: "sales_records_table"
         TableType: "EXTERNAL_TABLE"
         Parameters:
-          classification: "csv"
+          classification: "parquet"
           has_encrypted_data: "false"
         StorageDescriptor:
           Columns:
@@ -53,14 +53,11 @@ Resources:
             - Name: "total_profit"
               Type: "double"
           Location: "s3://demo-poc-iata/iata-workflow/parquet/2024-11-19-23-25-25/"
-          InputFormat: "org.apache.hadoop.mapred.TextInputFormat"
-          OutputFormat: "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
+          InputFormat: "org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat"
+          OutputFormat: "org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat"
           Compressed: false
           SerdeInfo:
-            SerializationLibrary: "org.apache.hadoop.hive.serde2.OpenCSVSerde"
-            Parameters:
-              "separatorChar": ","
-              "skip.header.line.count": "1"
+            SerializationLibrary: "org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"
           StoredAsSubDirectories: false
 
 Outputs:
